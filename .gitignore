@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 *.so
 .env
+.env.*
+!.env.example
 .venv/
 venv/
 db.sqlite3
