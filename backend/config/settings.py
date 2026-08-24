@@ -22,10 +22,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'allauth',
+    'allauth.account',
+    'allauth.headless',
     'core',
 ]
 
 AUTH_USER_MODEL = 'core.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -36,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -113,6 +122,23 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+}
+
+# django-allauth configuration
+# https://docs.allauth.org/en/latest/
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+
+# Headless (DRF-friendly) configuration
+# https://docs.allauth.org/en/latest/headless/
+HEADLESS_FRONTEND_URLS = {
+    'account_confirm_email': 'http://localhost:5173/account/verify-email/{key}',
+    'account_reset_password': 'http://localhost:5173/account/password/reset',
+    'account_reset_password_from_key': 'http://localhost:5173/account/password/reset/key/{key}',
+    'account_signup': 'http://localhost:5173/account/signup',
+    'socialaccount_login_error': 'http://localhost:5173/account/provider/callback',
 }
 
 MAILERS = {
