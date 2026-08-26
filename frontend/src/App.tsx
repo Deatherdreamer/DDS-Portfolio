@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next'
+
 function App() {
+  const { t } = useTranslation()
+
   return (
     <main>
-      <h1>DDS Portfolio</h1>
+      <h1>{t('app.title')}</h1>
     </main>
   )
 }
