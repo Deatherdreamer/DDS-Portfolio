@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Achievement, Company, Position, Project, Technology, User
+from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
 
 
 @admin.register(User)
@@ -31,7 +31,20 @@ class AchievementAdmin(admin.ModelAdmin):
     list_filter = ('company',)
 
 
+class ScreenshotInline(admin.TabularInline):
+    model = Screenshot
+    extra = 1
+    fields = ('image', 'title', 'description', 'order')
+
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'company')
     filter_horizontal = ('tech_stack',)
+    inlines = (ScreenshotInline,)
+
+
+@admin.register(Screenshot)
+class ScreenshotAdmin(admin.ModelAdmin):
+    list_display = ('title', 'project', 'order')
+    list_filter = ('project',)

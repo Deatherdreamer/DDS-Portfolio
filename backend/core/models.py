@@ -50,3 +50,27 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def screenshot_upload_path(instance, filename):
+    return f'projects/{instance.project_id}/screenshots/{filename}'
+
+
+class Screenshot(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='screenshots')
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to=screenshot_upload_path)
+    order = models.PositiveIntegerField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+
+    def save(self, *args, **kwargs):
+        if self.order is None:
+            last = Screenshot.objects.filter(project=self.project).aggregate(models.Max('order'))['order__max']
+            self.order = 1 if last is None else last + 1
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.title} ({self.project.name})"

@@ -1,11 +1,12 @@
 from rest_framework import viewsets
 
-from .models import Achievement, Company, Position, Project, Technology, User
+from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
 from .serializers import (
     AchievementSerializer,
     CompanySerializer,
     PositionSerializer,
     ProjectSerializer,
+    ScreenshotSerializer,
     TechnologySerializer,
     UserSerializer,
 )
@@ -37,5 +38,10 @@ class AchievementViewSet(viewsets.ModelViewSet):
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.select_related('company').prefetch_related('tech_stack').all()
+    queryset = Project.objects.select_related('company').prefetch_related('tech_stack', 'screenshots').all()
     serializer_class = ProjectSerializer
+
+
+class ScreenshotViewSet(viewsets.ModelViewSet):
+    queryset = Screenshot.objects.select_related('project').all()
+    serializer_class = ScreenshotSerializer

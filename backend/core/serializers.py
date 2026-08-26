@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Achievement, Company, Position, Project, Technology, User
+from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -43,13 +43,24 @@ class AchievementSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'company', 'company_id']
 
 
+class ScreenshotSerializer(serializers.ModelSerializer):
+    project_id = serializers.PrimaryKeyRelatedField(
+        queryset=Project.objects.all(), source='project'
+    )
+
+    class Meta:
+        model = Screenshot
+        fields = ['id', 'title', 'description', 'image', 'order', 'project_id']
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     tech_stack = TechnologySerializer(many=True, read_only=True)
     company = CompanySerializer(read_only=True)
     company_id = serializers.PrimaryKeyRelatedField(
         queryset=Company.objects.all(), source='company', write_only=True, required=False, allow_null=True
     )
+    screenshots = ScreenshotSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
-        fields = ['id', 'name', 'description', 'tech_stack', 'company', 'company_id']
+        fields = ['id', 'name', 'description', 'tech_stack', 'company', 'company_id', 'screenshots']

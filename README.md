@@ -19,6 +19,7 @@ My personal portfolio project — a pet project I'm building to showcase my work
   - Achievements can link to a company or stand alone as personal/professional
   - Projects can optionally be associated with a company
 - [x] Nested serializers (writable `company_id`, read-only nested company data)
+- [x] Screenshot uploads per project (Pillow): title, optional description, manual ordering with upload-order defaults, files stored under `media/projects/<id>/screenshots/`
 - [ ] Auth (token/JWT) and permissions
 - [ ] Seed data / fixtures
 - [ ] Tests
