@@ -1,5 +1,43 @@
 {
   "app": {
     "title": "Portafolio DDS"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "achievements": "Logros"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Daniel Sztajnworc",
+    "role": "Desarrollador Full Stack",
+    "description": "Creando aplicaciones web performantes, elegantes y centradas en el usuario.",
+    "viewProjects": "Ver Proyectos",
+    "contact": "Contacto"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "subtitle": "Una colección de proyectos construidos con tecnologías web modernas.",
+    "viewCode": "Código",
+    "viewLive": "Ver Demo",
+    "empty": "No se encontraron proyectos."
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "subtitle": "Mi trayectoria profesional e hitos laborales.",
+    "present": "Presente",
+    "remote": "Remoto",
+    "onSite": "Presencial",
+    "empty": "No se encontró historial laboral."
+  },
+  "achievements": {
+    "title": "Logros",
+    "subtitle": "Hitos clave, certificaciones y reconocimientos.",
+    "empty": "No se encontraron logros."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error. Por favor intenta más tarde."
   }
 }

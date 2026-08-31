@@ -1,5 +1,43 @@
 {
   "app": {
     "title": "DDS Portfolio"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "experience": "Experience",
+    "achievements": "Achievements"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Daniel Sztajnworc",
+    "role": "Full Stack Developer",
+    "description": "Building performant, elegant, and user-centric web applications.",
+    "viewProjects": "View Projects",
+    "contact": "Get in Touch"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "A collection of projects I've built using modern web technologies.",
+    "viewCode": "Code",
+    "viewLive": "Live Demo",
+    "empty": "No projects found."
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "My professional journey and career milestones.",
+    "present": "Present",
+    "remote": "Remote",
+    "onSite": "On-site",
+    "empty": "No work experience found."
+  },
+  "achievements": {
+    "title": "Achievements",
+    "subtitle": "Key milestones, certifications, and recognitions.",
+    "empty": "No achievements found."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Please try again later."
   }
 }
