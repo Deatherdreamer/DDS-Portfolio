@@ -7,6 +7,7 @@ from .views import (
     PositionViewSet,
     ProjectViewSet,
     ScreenshotViewSet,
+    SocialLinkViewSet,
     TechnologyViewSet,
     UserViewSet,
 )
@@ -19,6 +20,7 @@ router.register('positions', PositionViewSet)
 router.register('achievements', AchievementViewSet)
 router.register('projects', ProjectViewSet)
 router.register('screenshots', ScreenshotViewSet)
+router.register('social-links', SocialLinkViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

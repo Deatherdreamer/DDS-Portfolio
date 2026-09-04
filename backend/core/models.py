@@ -74,3 +74,40 @@ class Screenshot(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.project.name})"
+
+
+class SocialLink(models.Model):
+    class Platform(models.TextChoices):
+        GITHUB = 'github', 'GitHub'
+        LINKEDIN = 'linkedin', 'LinkedIn'
+        FACEBOOK = 'facebook', 'Facebook'
+        X_TWITTER = 'x_twitter', 'X / Twitter'
+        X = 'x', 'X'
+        TWITTER = 'twitter', 'Twitter'
+        INSTAGRAM = 'instagram', 'Instagram'
+        YOUTUBE = 'youtube', 'YouTube'
+        TIKTOK = 'tiktok', 'TikTok'
+        DISCORD = 'discord', 'Discord'
+        TWITCH = 'twitch', 'Twitch'
+        REDDIT = 'reddit', 'Reddit'
+        WEBSITE = 'website', 'Personal Website'
+        OTHER = 'other', 'Other'
+
+    platform = models.CharField(
+        max_length=50,
+        choices=Platform.choices,
+        help_text="Social media platform or page type.",
+    )
+    link = models.URLField(
+        max_length=500,
+        help_text="The URL of the social profile or page.",
+    )
+
+    class Meta:
+        verbose_name = 'Social Link'
+        verbose_name_plural = 'Social Links'
+
+    def __str__(self):
+        return f"{self.get_platform_display()}: {self.link}"
+
+

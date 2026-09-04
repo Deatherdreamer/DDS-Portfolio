@@ -1,6 +1,15 @@
 from rest_framework import serializers
 
-from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
+from .models import (
+    Achievement,
+    Company,
+    Position,
+    Project,
+    Screenshot,
+    SocialLink,
+    Technology,
+    User,
+)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -64,3 +73,13 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'name', 'description', 'tech_stack', 'company', 'company_id', 'screenshots']
+
+
+class SocialLinkSerializer(serializers.ModelSerializer):
+    platform_display = serializers.CharField(source='get_platform_display', read_only=True)
+
+    class Meta:
+        model = SocialLink
+        fields = ['id', 'platform', 'platform_display', 'link']
+
+

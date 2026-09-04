@@ -1,12 +1,22 @@
 from rest_framework import viewsets
 
-from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
+from .models import (
+    Achievement,
+    Company,
+    Position,
+    Project,
+    Screenshot,
+    SocialLink,
+    Technology,
+    User,
+)
 from .serializers import (
     AchievementSerializer,
     CompanySerializer,
     PositionSerializer,
     ProjectSerializer,
     ScreenshotSerializer,
+    SocialLinkSerializer,
     TechnologySerializer,
     UserSerializer,
 )
@@ -45,3 +55,9 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class ScreenshotViewSet(viewsets.ModelViewSet):
     queryset = Screenshot.objects.select_related('project').all()
     serializer_class = ScreenshotSerializer
+
+
+class SocialLinkViewSet(viewsets.ModelViewSet):
+    queryset = SocialLink.objects.all()
+    serializer_class = SocialLinkSerializer
+

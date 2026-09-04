@@ -1,7 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Achievement, Company, Position, Project, Screenshot, Technology, User
+from .models import (
+    Achievement,
+    Company,
+    Position,
+    Project,
+    Screenshot,
+    SocialLink,
+    Technology,
+    User,
+)
 
 
 @admin.register(User)
@@ -48,3 +57,11 @@ class ProjectAdmin(admin.ModelAdmin):
 class ScreenshotAdmin(admin.ModelAdmin):
     list_display = ('title', 'project', 'order')
     list_filter = ('project',)
+
+
+@admin.register(SocialLink)
+class SocialLinkAdmin(admin.ModelAdmin):
+    list_display = ('platform', 'link')
+    list_filter = ('platform',)
+    search_fields = ('link',)
+
